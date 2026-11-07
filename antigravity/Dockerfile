@@ -60,7 +60,7 @@ RUN useradd -ms /bin/bash antigravity && \
 
 # 6. Create an entrypoint script to run background services and hand off to agy as the user
 RUN echo '#!/bin/sh' > /entrypoint.sh && \
-    echo '/usr/sbin/node_exporter &> /tmp/node_exporter.log &' >> /entrypoint.sh && \
+    echo '/usr/bin/prometheus-node-exporter &> /tmp/node_exporter.log &' >> /entrypoint.sh && \
     echo 'exec code-server --bind-addr 0.0.0.0:8099 --auth none' >> /entrypoint.sh && \
     chmod +x /entrypoint.sh
 
